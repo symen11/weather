@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#081a2d" />
+  <meta name="description" content="Weatherly — live weather and forecast for cities around the world." />
+  <title>Weatherly — Live Weather</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="sky-glow"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Weatherly home"><span class="brand-icon">☀️</span><span>Weatherly</span></a>
+    <nav class="nav-links"><a class="active" href="#today">Today</a><a href="#hourly">Hourly</a><a href="#weekly">7-day
+        forecast</a></nav>
+    <div class="top-actions">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle light/dark theme">☼</button>
+      <button id="locationBtn" class="location-btn"><span>⌖</span> Use my location</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro">
+      <div class="intro-copy">
+        <p class="eyebrow"><span class="live-dot"></span> YOUR WEATHER, AT A GLANCE</p>
+        <h1>Find your own<br><span>kind of weather.</span></h1>
+        <p class="intro-text">Real-time conditions, hourly updates and a 7-day outlook — wherever you are.</p>
+        <form id="searchForm" class="search-bar">
+          <span class="search-icon">⌕</span>
+          <input id="cityInput" type="search" placeholder="Search a city (e.g. Delhi, London)" autocomplete="off"
+            aria-label="Search city" />
+          <button type="submit">Search <span>→</span></button>
+        </form>
+        <p id="status" class="status" role="status">Getting weather data…</p>
+      </div>
+
+      <article id="today" class="current-card glass">
+        <div class="current-top">
+          <div>
+            <p class="label">CURRENT WEATHER</p>
+            <h2 id="cityName">Garhwa, India</h2>
+            <p id="localDate" class="muted">Your local forecast</p>
+          </div>
+          <span id="conditionPill" class="condition-pill">Loading</span>
+        </div>
+        <div class="current-main">
+          <div id="mainWeatherIcon" class="weather-illustration" aria-hidden="true">🌤️</div>
+          <div>
+            <div class="temperature"><span id="temperature">--</span><sup>°C</sup></div>
+            <p id="condition" class="condition">Fetching conditions</p>
+            <p class="feels">Feels like <strong id="feelsLike">--°</strong></p>
+          </div>
+        </div>
+        <div class="high-low"><span>↑ <b id="highTemp">--°</b> <small>High</small></span><span>↓ <b id="lowTemp">--°</b>
+            <small>Low</small></span></div>
+        <div class="card-divider"></div>
+        <div class="current-bottom"><span><i>↻</i> Live forecast</span><span id="updatedAt">Updates when searched</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="metrics-grid" aria-label="Weather details">
+      <article class="metric glass">
+        <div class="metric-icon blue">💧</div>
+        <div>
+          <p>Humidity</p><strong id="humidity">--%</strong><small>Relative humidity</small>
+        </div>
+      </article>
+      <article class="metric glass">
+        <div class="metric-icon cyan">〰</div>
+        <div>
+          <p>Wind speed</p><strong id="wind">-- km/h</strong><small id="windDirection">Near surface</small>
+        </div>
+      </article>
+      <article class="metric glass">
+        <div class="metric-icon violet">◉</div>
+        <div>
+          <p>Air pressure</p><strong id="pressure">-- hPa</strong><small>Sea-level pressure</small>
+        </div>
+      </article>
+      <article class="metric glass">
+        <div class="metric-icon amber">☀</div>
+        <div>
+          <p>UV index</p><strong id="uv">--</strong><small id="uvLabel">Daily maximum</small>
+        </div>
+      </article>
+    </section>
+
+    <section class="forecast-layout">
+      <div class="left-column">
+        <article id="hourly" class="panel glass">
+          <div class="section-heading">
+            <div>
+              <p class="label">NEXT HOURS</p>
+              <h2>Hourly forecast</h2>
+            </div><span class="heading-icon">◷</span>
+          </div>
+          <div id="hourlyList" class="hourly-list">
+            <div class="loading-card">Loading hourly forecast…</div>
+          </div>
+        </article>
+        <article class="panel glass sun-panel">
+          <div class="section-heading">
+            <div>
+              <p class="label">DAYLIGHT</p>
+              <h2>Sunrise & sunset</h2>
+            </div><span class="heading-icon sun">☼</span>
+          </div>
+          <div class="sun-times">
+            <div class="sun-visual">
+              <div class="sun-track"><span class="sun-ball"></span></div>
+              <div class="sun-labels"><span>Sunrise <strong id="sunrise">--:--</strong></span><span>Sunset <strong
+                    id="sunset">--:--</strong></span></div>
+            </div>
+            <div class="daylight-stat"><span class="muted">Daylight duration</span><strong id="daylight">--
+                h</strong><small>Make the most of today</small></div>
+          </div>
+        </article>
+      </div>
+      <article id="weekly" class="panel glass weekly-panel">
+        <div class="section-heading">
+          <div>
+            <p class="label">PLAN AHEAD</p>
+            <h2>7-day forecast</h2>
+          </div><span class="heading-icon">▦</span>
+        </div>
+        <div id="weeklyList" class="weekly-list">
+          <div class="loading-card">Loading 7-day forecast…</div>
+        </div>
+        <p class="forecast-note">Forecast data provided by Open-Meteo.</p>
+      </article>
+    </section>
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#"><span class="brand-icon">☀️</span> Weatherly</a>
+      <div class="footer-credit">
+        <span>Designed &amp; developed by <strong>Sagar</strong></span>
+        <span class="footer-tagline">BUILD WITH SAGAR · Built with passion for learning and creating.</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/" target="_blank" rel="noreferrer" aria-label="GitHub profile">GitHub ↗</a>
+        <a href="https://www.instagram.com/DEVELOPER.SAGAR1/" target="_blank" rel="noreferrer"
+          aria-label="Instagram profile">Instagram ↗</a>
+        <span>Weather data: <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a></span>
+      </div>
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+
+</html>
